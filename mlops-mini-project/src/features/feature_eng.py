@@ -8,13 +8,13 @@ import logging
 import pickle
 
 # logging configuration
-logger = logging.getLogger('feature_engineering')
+logger = logging.getLogger('feature_eng')
 logger.setLevel('DEBUG')
 
 console_handler = logging.StreamHandler()
 console_handler.setLevel('DEBUG')
 
-file_handler = logging.FileHandler('feature_engineering_errors.log')
+file_handler = logging.FileHandler('feature_eng_errors.log')
 file_handler.setLevel('ERROR')
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')

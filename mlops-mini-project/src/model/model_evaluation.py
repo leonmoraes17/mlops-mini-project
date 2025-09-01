@@ -137,8 +137,9 @@ def main():
             for metric_name, metric_value in metrics.items():
                 mlflow.log_metric(metric_name, metric_value)
             
-            # Log model parameters to MLflow
-            # if hasattr(clf, 'get_params'):  hasattr(clf, 'get_params') checks if the object clf has this method (so the code won’t break if clf is not a scikit-learn model).
+            # Log model parameters to 
+            # hasattr(clf, 'get_params') checks if the object clf has this method (so the code won’t break if clf is not a scikit-learn model).
+            if hasattr(clf, 'get_params'):  
                 params = clf.get_params()
                 for param_name, param_value in params.items():
                     mlflow.log_param(param_name, param_value)
@@ -146,17 +147,18 @@ def main():
 
             # Log model to MLflow
 
-            # Log model
-            # mlflow.sklearn.log_model(clf, "model")
+            # mlflow.sklearn.log_model(clf, artifact_path="model")
+            mlflow.log_artifact('D:/Projects/mlops_miniproject/mlops-mini-project/models/model.pkl', artifact_path='model')
+          
             
-            # Save model info
-            save_model_info(run.info.run_id, "model", 'D:/Projects/mlops_miniproject/mlops-mini-project/reports/experiment_info.json')
+            # # Save model info
+            save_model_info(run.info.run_id, "model", 'reports/experiment_info.json')
             
             # Log the metrics file to MLflow
             mlflow.log_artifact('D:/Projects/mlops_miniproject/mlops-mini-project/reports/metrics.json')
 
-            # Log the model info file to MLflow
-            # mlflow.log_artifact('D:/Projects/mlops_miniproject/mlops-mini-project/reports/model_info.json')
+            # # Log the model info file to MLflow
+            # mlflow.log_artifact('reports/model_info.json')
 
             # Log the evaluation errors log file to MLflow
             mlflow.log_artifact('model_evaluation_errors.log')
